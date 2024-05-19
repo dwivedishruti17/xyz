@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Edit from "./pages/Edit";
 import Home from "./pages/Home";
+import axios from "axios";
 const App = () => {
   return (
     <>

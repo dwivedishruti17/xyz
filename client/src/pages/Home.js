@@ -18,16 +18,33 @@ const Home = () => {
     getAllData();
   }, [render]);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await axios.post("http://localhost:9000/api/v1/users", input);
+  //   setRender(true);
+  //   setInput({
+  //     name: "",
+  //     email: "",
+  //     RegNo: "",
+  //     Section:"",
+  //   });
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:9000/api/v1/users", input);
-    setRender(true);
-    setInput({
-      name: "",
-      email: "",
-      RegNo: "",
-      Section:"",
-    });
+    console.log("Submitting data:", input);
+    try {
+      await axios.post("http://localhost:9000/api/v1/users", input);
+      setRender(true);
+      setInput({
+        name: "",
+        email: "",
+        RegNo: "",
+        Section: "",
+      });
+    } catch (error) {
+      console.error("Error response:", error.response ? error.response.data : error.message);
+    }
   };
 
   const handelDelete = async (id) => {

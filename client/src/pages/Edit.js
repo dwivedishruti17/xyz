@@ -20,11 +20,24 @@ const Edit = () => {
     getAllData();
   }, [id]);
 
+  // const handleEditData = async (e) => {
+  //   e.preventDefault();
+  //   await axios.put(`http://localhost:9000/api/v1/users/${id}`, input);
+  //   navigate("/");
+  // };
+
+
   const handleEditData = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:9000/api/v1/users/${id}`, input);
-    navigate("/");
+    console.log("Sending data:", input);
+    try {
+      await axios.put(`http://localhost:9000/api/v1/users/${id}`, input);
+      navigate("/");
+    } catch (error) {
+      console.error("Error response:", error.response ? error.response.data : error.message);
+    }
   };
+
   return (
     <>
       <div className="container">
@@ -37,7 +50,7 @@ const Edit = () => {
           <div className="col-md-12">
             <form onSubmit={handleEditData}>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Name
                 </label>
                 <input
@@ -47,13 +60,13 @@ const Edit = () => {
                   onChange={(e) =>
                     setInput({ ...input, [e.target.name]: e.target.value })
                   }
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                 />
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   Email
                 </label>
                 <input
@@ -68,7 +81,7 @@ const Edit = () => {
                 />
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   RegNo
                 </label>
                 <input
@@ -83,7 +96,7 @@ const Edit = () => {
                 />
               </div>
               <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   Section
                 </label>
                 <input
